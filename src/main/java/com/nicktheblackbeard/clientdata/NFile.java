@@ -1,47 +1,62 @@
 package com.nicktheblackbeard.clientdata;
 
+import java.util.ArrayList;
+
 /**
  * @author nicktheblackbeard
  * 6/6/21
  */
 public class NFile{
     private String name;
-    private String format;
-    private String analysis;
+    private ArrayList<String> formatsList = null;
+    private ArrayList<String> qualitiesList = null;
 
-    public NFile(){
+    private String max_quality;
+
+    public NFile() {
         this.name = "";
-        this.format = "";
-        this.analysis = "";
+        this.formatsList = new ArrayList<>();
+        this.qualitiesList = new ArrayList<>();
     }
 
-    public NFile(String name, String format, String analysis) {
+    public NFile(String name, ArrayList<String> formatsList, ArrayList<String> qualitiesList) {
         this.name = name;
-        this.format = format;
-        this.analysis = analysis;
+        this.formatsList = formatsList;
+        this.qualitiesList = qualitiesList;
+    }
+
+    public void addAnalysis(String analysis){
+        this.qualitiesList.add(analysis);
+    }
+
+    public void addFormat(String format){
+        this.formatsList.add(format);
+    }
+
+
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFormat(ArrayList<String> formatsList) {
+        this.formatsList = formatsList;
+    }
+
+    public void setAnalysis(ArrayList<String> analysis) {
+        this.qualitiesList = analysis;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public String getFormat() {
-        return this.format;
+    public ArrayList<String> getFormat() {
+        return this.formatsList;
     }
 
-    public String getAnalysis() {
-        return this.analysis;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
-
-    public void setAnalysis(String analysis) {
-        this.analysis = analysis;
+    public ArrayList<String> getAnalysis() {
+        return this.qualitiesList;
     }
 }

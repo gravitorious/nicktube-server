@@ -1,5 +1,6 @@
 package com.nicktheblackbeard;
 
+import com.nicktheblackbeard.server.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,10 +10,11 @@ import org.apache.logging.log4j.Logger;
  */
 public class Main {
 
-    static Logger log = LogManager.getLogger(Main.class);
+    static public Logger log = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         log.info("Server is on...");
+        NServer server = new NServer();
     }
 
 }

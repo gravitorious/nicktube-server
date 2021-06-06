@@ -5,6 +5,6 @@
             <PatternLayout
                     pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
         </Console> </Appenders> <Loggers>
-    <Root level="error" additivity="true"> <AppenderRef ref="console" />
+    <Root level="all" additivity="true"> <AppenderRef ref="console" />
     </Root> </Loggers>
 </Configuration>
