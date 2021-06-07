@@ -8,55 +8,56 @@ import java.util.ArrayList;
  */
 public class NFile{
     private String name;
-    private ArrayList<String> formatsList = null;
-    private ArrayList<String> qualitiesList = null;
+    private String format;
+    private ArrayList<String> qualities;
 
-    private String max_quality;
-
-    public NFile() {
+    public NFile(){
         this.name = "";
-        this.formatsList = new ArrayList<>();
-        this.qualitiesList = new ArrayList<>();
+        this.format = "";
+        this.qualities = new ArrayList<>();
     }
 
-    public NFile(String name, ArrayList<String> formatsList, ArrayList<String> qualitiesList) {
+    public NFile(String name, String quality, String format) {
         this.name = name;
-        this.formatsList = formatsList;
-        this.qualitiesList = qualitiesList;
+        this.format = format;
+        this.qualities = new ArrayList<>();
+        this.qualities.add(quality);
     }
 
-    public void addAnalysis(String analysis){
-        this.qualitiesList.add(analysis);
-    }
-
-    public void addFormat(String format){
-        this.formatsList.add(format);
-    }
-
-
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFormat(ArrayList<String> formatsList) {
-        this.formatsList = formatsList;
-    }
-
-    public void setAnalysis(ArrayList<String> analysis) {
-        this.qualitiesList = analysis;
+    public void addQuality(String quality){
+        this.qualities.add(quality);
     }
 
     public String getName() {
         return this.name;
     }
 
-    public ArrayList<String> getFormat() {
-        return this.formatsList;
+    public String getFormat() {
+        return this.format;
     }
 
-    public ArrayList<String> getAnalysis() {
-        return this.qualitiesList;
+    public ArrayList<String> getQualities() {
+        return this.qualities;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFormat(String format){
+        this.format = format;
+    }
+
+    public void setQualities(ArrayList<String> qualities) {
+        this.qualities = qualities;
+    }
+
+    @Override
+    public String toString() {
+        return "NFile{" +
+                "name='" + name + '\'' +
+                ", format='" + format + '\'' +
+                ", qualities=" + qualities +
+                '}';
     }
 }

@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  * @author nicktheblackbeard
  * 6/6/21
  */
-public class NServer {
+public class LoadFiles {
     private ArrayList<NFile> allFiles = null;
     private ArrayList<NClient> clients = null;
 
@@ -28,15 +28,15 @@ public class NServer {
     /*
     default constructor creates missing files and put them to memory
      */
-    public NServer(){
+    public LoadFiles(){
         this.allFiles = new ArrayList<>();
         this.clients = new ArrayList<>();
-        ArrayList<String> file_names = this.getFilesFromDirectory();
+        ArrayList<String> file_names = this.getFilesFromDirectory(); //πρέπει να γίνει έλεγχος για το αν βρήκε αρχεία
         Main.log.debug("Server found these files: " +file_names.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ")));
-        this.findNewFiles(file_names);
-
+        this.addInitialFilesToMemory(file_names);
+        this.printAllFiles();
 
     }
 
@@ -62,42 +62,50 @@ public class NServer {
         return file_names;
     }
 
-    private boolean searchFileByName(String name){
-        for(NFile nfile : allFiles){
-            if(nfile.getName().equals(name)) return true;
+    private NFile searchFileByNameAndFormat(String name, String format){
+        for(NFile nfile : this.allFiles){
+            if(nfile.getName().equals(name) && nfile.getFormat().equals(format)) return nfile;
         }
-        return false;
+        return null;
+    }
+
+
+    private void addFile(NFile file){
+        this.allFiles.add(file);
     }
 
 
 
-    private void findNewFiles(ArrayList<String> file_names){
 
-        boolean result;
+    /*
+        we put every file from videos to memory.
+        split_by_dash[0] : name of the file
+        split_by_dot[0] : quality
+        split_by_dot[1] : format
+     */
+    private void addInitialFilesToMemory(ArrayList<String> file_names){
+
+        NFile return_file;
         String[] split_by_dash;
-        String quality;
+        String[] split_by_dot;
         for(String file : file_names){
             /*
-                we assume that the name of the file has only one dash. Before the dash, is the name of th file
+                we assume that the name of the file has only one dash. Before the dash, is the name of the file
              */
             split_by_dash = file.split("-", 2);
-            result = this.searchFileByName(split_by_dash[0]);
-            if(result) continue;
-            quality = split_by_dash[1].substring(split_by_dash[1].length() - 3); //last 3 chars define the format of files
-            /*
-            search the max quality for this file name while adding files to memory
-             */
-
-
-
-
-
-
-
+            split_by_dot = split_by_dash[1].split("\\.", 2);
+            return_file = this.searchFileByNameAndFormat(split_by_dash[0], split_by_dot[1]);
+            if(return_file != null){
+                return_file.addQuality(split_by_dot[0]);
+            }else {
+                this.allFiles.add(new NFile(split_by_dash[0], split_by_dot[0], split_by_dot[1]));
+            }
         }
-
-
     }
 
-
+    private void printAllFiles(){
+        for(NFile file : this.allFiles){
+            System.out.println(file.toString());
+        }
+    }
 }
