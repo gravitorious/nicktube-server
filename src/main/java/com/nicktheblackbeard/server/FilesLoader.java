@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  * @author nicktheblackbeard
  * 6/6/21
  */
-public class LoadFiles {
+public class FilesLoader {
     private ArrayList<NFile> allFiles = null;
     private ArrayList<NClient> clients = null;
 
@@ -28,7 +28,7 @@ public class LoadFiles {
     /*
     default constructor creates missing files and put them to memory
      */
-    public LoadFiles(){
+    public FilesLoader(){
         this.allFiles = new ArrayList<>();
         this.clients = new ArrayList<>();
         ArrayList<String> file_names = this.getFilesFromDirectory(); //πρέπει να γίνει έλεγχος για το αν βρήκε αρχεία
