@@ -41,6 +41,13 @@ public class NFile{
         this.findMaxQuality();
     }
 
+    public NFile(String name, String format){
+        this.name = name;
+        this.format = format;
+        this.qualities = new ArrayList<>();
+        this.intQualities = new ArrayList<>();
+    }
+
     public void addQuality(String quality){
         this.qualities.add(quality);
         this.addLastQualityToIntList(quality);

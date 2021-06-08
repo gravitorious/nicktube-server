@@ -8,6 +8,7 @@ import net.bramp.ffmpeg.builder.FFmpegBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author nicktheblackbeard
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class FilesCreator {
     private ArrayList<NFile> allFiles;
+    private ArrayList<NFile> allFilesAfterModification;
 
     private FFmpeg ffmpeg = null;
     private FFprobe ffprobe = null;
@@ -30,16 +32,19 @@ public class FilesCreator {
     //we use this attribute in findMaxQualityFromFileName to save the file that we will use for transcoding
     private NFile fileWithMaxQuality;
 
+    private boolean has_mp4 = false;
+    private boolean has_mkv = false;
+    private boolean has_avi = false;
+
+
 
     public FilesCreator() throws IOException {
         this.loadFFmpegDir();
         FilesLoader filesLoader = new FilesLoader();
         this.allFiles = filesLoader.getAllFiles();
+        this.allFilesAfterModification = new ArrayList<>();
         this.printAllFiles();
         this.addNewFiles();
-
-
-
 
     }
 
@@ -62,28 +67,70 @@ public class FilesCreator {
         ArrayList<String> testedFilesNames = new ArrayList<>(); //contains all file names that we have already create new files
         ArrayList<NFile> testingFiles; //all files that we will create new files. it will contains max 3 objects each time
         for(NFile checkingFile : allFiles){
+            this.changeToFalse();
             result = this.searchFileName(testedFilesNames, checkingFile.getName());
             if(result) continue;
             testedFilesNames.add(checkingFile.getName());
             testingFiles = new ArrayList<>();
-            testingFiles.add(checkingFile);
             max = checkingFile.getMaxQuality();
             fileWithMaxQuality = checkingFile;
             max = this.findMaxQualityFromFileName(checkingFile, max, testingFiles);
-            System.out.println("μεγαλύτερη ανάλυση έιναι: " + max);
-            System.out.println("Το αρχεί ομε την μεγαλύτερη ανάλυση: " + fileWithMaxQuality.getName()+fileWithMaxQuality.getFormat());
             //in this stage we found the max quality from a file (without caring the format)
-            //System.out.println("=====");
-            //this.printAllFiles(testingFiles);
+
+            //first stage: create new files from existing formats
             for(NFile file : testingFiles){
                 this.createNewFiles(file, max);
             }
-
-
+            if(testingFiles.size() == 3) continue; //we don't need to make new files with new format
+            else{
+                /*
+                search the new formats that we will need to create
+                 */
+                for(NFile file : testingFiles){
+                    String format = file.getFormat();
+                    if(format.equals("mp4")) this.has_mp4 = true;
+                    else if(format.equals("mkv")) this.has_mkv = true;
+                    else if(format.equals("avi")) this.has_avi = true;
+                }
+                if(!this.has_mp4){
+                    NFile new_file = new NFile(checkingFile.getName(), "mp4");
+                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    createNewFiles(new_file, max);
+                }
+                if(!this.has_mkv){
+                    NFile new_file = new NFile(checkingFile.getName(), "mkv");
+                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    createNewFiles(new_file, max);
+                }
+                if(!this.has_avi){
+                    NFile new_file = new NFile(checkingFile.getName(), "avi");
+                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    createNewFiles(new_file, max);
+                }
+            }
         }
+        this.putNewFilesToAllFiles(); //put to allFiles list the new created files
 
+    }
 
-
+    /*
+    We are trying to find the max quality from a file name (not checking the format)
+    We are checking all files that have the same name with checkingFile
+    We will return the max quality and we will keep the file with the max quality. We will need this file
+    to make the transcoding
+ */
+    private Integer findMaxQualityFromFileName(NFile checkingFile, Integer max, ArrayList<NFile> testingFiles){
+        boolean result;
+        for(NFile otherFile : allFiles){
+            result = otherFile.getName().equals(checkingFile.getName());
+            if(!result) continue;
+            testingFiles.add(otherFile);
+            if(otherFile.getMaxQuality() > max){
+                max = otherFile.getMaxQuality();
+                this.fileWithMaxQuality = otherFile;
+            }
+        }
+        return max;
     }
 
     private void createNewFiles(NFile file, Integer max){
@@ -135,26 +182,6 @@ public class FilesCreator {
 
 
 
-    /*
-        We are trying to find the max quality from a file name (not checking the format)
-        We are checking all files that have the same name with checkingFile
-        We will return the max quality and we will keep the file with the max quality. We will need this file
-        to make the transcoding
-     */
-    private Integer findMaxQualityFromFileName(NFile checkingFile, Integer max, ArrayList<NFile> testingFiles){
-        boolean result;
-        for(NFile otherFile : allFiles){
-            result = otherFile.getName().equals(checkingFile.getName());
-            if(!result) continue;
-            if(otherFile.getMaxQuality() > max){
-                max = otherFile.getMaxQuality();
-                testingFiles.add(otherFile);
-                this.fileWithMaxQuality = otherFile;
-            }
-        }
-        return max;
-    }
-
     private boolean searchFileName(ArrayList<String> testedFilesNames, String name){
         if(testedFilesNames.contains(name)) return true;
         else return false;
@@ -169,6 +196,20 @@ public class FilesCreator {
     private void printAllFiles(ArrayList<NFile> files){
         for(NFile file : files){
             System.out.println(file.toString());
+        }
+    }
+
+    private void changeToFalse(){
+        this.has_avi = false;
+        this.has_mp4 = false;
+        this.has_mkv = false;
+    }
+
+    private void putNewFilesToAllFiles(){
+        Iterator<NFile> it = this.allFilesAfterModification.iterator();
+
+        while (it.hasNext()) {
+            this.allFiles.add(it.next());
         }
     }
 
