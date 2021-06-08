@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08169f19-85e0-403a-983e-3ffe3fb601e6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/clientdata/NFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/clientdata/NFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/server/NServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilesCreator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FilesCreator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesCreator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="227">
@@ -50,6 +44,15 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -83,12 +86,12 @@
         <option value="$PROJECT_DIR$/.gitignore.txt" />
         <option value="$PROJECT_DIR$/src/main/java/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/NServer.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/LoadFiles.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesCreator.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -295,15 +298,16 @@
       <workItem from="1623061782139" duration="16006000" />
       <workItem from="1623092998998" duration="1125000" />
       <workItem from="1623141422056" duration="849000" />
-      <workItem from="1623142444844" duration="7093000" />
+      <workItem from="1623142444844" duration="7213000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38309000" />
+    <option name="totallyTimeSpent" value="38429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="808" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -669,13 +673,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/NServer.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/LoadFiles.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -724,6 +721,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
         </state>
       </provider>
     </entry>
