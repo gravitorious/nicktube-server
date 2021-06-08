@@ -17,35 +17,21 @@ import java.util.stream.IntStream;
  * 6/6/21
  */
 public class FilesLoader {
-    private ArrayList<NFile> allFiles = null;
-    private ArrayList<NClient> clients = null;
+    private ArrayList<NFile> allFiles;
+    //private ArrayList<NClient> clients = null;
 
-    private FFmpeg ffmpeg = null;
-    private FFprobe ffprobe = null;
-
-    private String videosPath = System.getProperty("user.dir") + "/videos/";
+    public static String videosPath = System.getProperty("user.dir") + "/videos/";
 
     /*
     default constructor creates missing files and put them to memory
      */
     public FilesLoader(){
         this.allFiles = new ArrayList<>();
-        this.clients = new ArrayList<>();
         ArrayList<String> file_names = this.getFilesFromDirectory(); //πρέπει να γίνει έλεγχος για το αν βρήκε αρχεία
         Main.log.debug("Server found these files: " +file_names.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ")));
         this.addInitialFilesToMemory(file_names);
-        this.printAllFiles();
-
-    }
-
-    private void loadFFmpeg(){
-
-    }
-
-    private void loadFFprobe(){
-
     }
 
     private ArrayList<String> getFilesFromDirectory(){
@@ -107,5 +93,9 @@ public class FilesLoader {
         for(NFile file : this.allFiles){
             System.out.println(file.toString());
         }
+    }
+
+    public ArrayList<NFile> getAllFiles() {
+        return allFiles;
     }
 }
