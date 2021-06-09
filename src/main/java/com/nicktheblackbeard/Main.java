@@ -14,9 +14,10 @@ public class Main {
 
     static public Logger log = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         log.info("Server is on...");
-        FilesCreator filescreator = new FilesCreator();
+        //FilesCreator filescreator = new FilesCreator();
+        Server server = new Server();
 
     }
 

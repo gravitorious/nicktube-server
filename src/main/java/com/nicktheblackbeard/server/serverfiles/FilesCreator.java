@@ -1,4 +1,4 @@
-package com.nicktheblackbeard.server;
+package com.nicktheblackbeard.server.serverfiles;
 
 import com.nicktheblackbeard.clientdata.NFile;
 import net.bramp.ffmpeg.FFmpeg;
@@ -40,7 +40,7 @@ public class FilesCreator {
 
     public FilesCreator() throws IOException {
         this.loadFFmpegDir();
-        FilesLoader filesLoader = new FilesLoader();
+        com.nicktheblackbeard.server.serverfiles.FilesLoader filesLoader = new FilesLoader();
         this.allFiles = filesLoader.getAllFiles();
         this.allFilesAfterModification = new ArrayList<>();
         this.printAllFiles();

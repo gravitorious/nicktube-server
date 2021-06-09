@@ -1,16 +1,12 @@
-package com.nicktheblackbeard.server;
+package com.nicktheblackbeard.server.serverfiles;
 
 import com.nicktheblackbeard.clientdata.*;
 import com.nicktheblackbeard.Main;
 
 
-import net.bramp.ffmpeg.FFmpeg;
-import net.bramp.ffmpeg.FFprobe;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @author nicktheblackbeard
