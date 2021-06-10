@@ -35,6 +35,14 @@ public class Server{
             NClient newClient = new NClient();
             this.addFilesToClient(speedResponse, newClient);
             output.writeObject(newClient);
+            for(;;) {
+                String fileToPlay = (String) input.readObject();
+                String protocol = (String) input.readObject();
+                System.out.println("Διάβασα το αρχείο: " + fileToPlay);
+                System.out.println("Και το πρωτόκολλο είναι: " + protocol);
+                if (protocol == "-1") break;
+            }
+
             output.close();
             socket.close();
             if(speedResponse == 0) break;
