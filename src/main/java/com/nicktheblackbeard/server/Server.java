@@ -4,13 +4,13 @@ import com.nicktheblackbeard.Main;
 import com.nicktheblackbeard.clientdata.NClient;
 import com.nicktheblackbeard.clientdata.NFile;
 import com.nicktheblackbeard.server.serverfiles.FilesCreator;
+import com.nicktheblackbeard.server.serverfiles.FilesLoader;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nicktheblackbeard
@@ -41,6 +41,10 @@ public class Server{
                 String protocol = (String) input.readObject();
                 System.out.println("Διάβασα το αρχείο: " + fileToPlay);
                 System.out.println("Και το πρωτόκολλο είναι: " + protocol);
+                if(protocol.equals("TCP")){
+                    this.streamWithTCP(fileToPlay, output);
+                }
+
             }
 
             output.close();
@@ -48,6 +52,42 @@ public class Server{
             if(speedResponse == 0) break;
         }
         server.close();
+    }
+
+    private void streamWithTCP(String fileName, ObjectOutputStream output) throws IOException {
+        String[] split = fileName.split("\\."); //split[1] contains the format
+        List<String> commands = new ArrayList<String>();
+        commands.add("ffmpeg"); // command
+        commands.add("-i");
+        commands.add(FilesLoader.videosPath + fileName);
+        commands.add("-f");
+        commands.add(split[1]);
+        commands.add("tcp://127.0.0.1:4001?listen");
+        System.out.println(FilesLoader.videosPath + "Amnesia_eurov-720p.mp4");
+        // command in Mac OS
+        // creating the process
+        ProcessBuilder pb = new ProcessBuilder(commands);
+        pb.directory(new File(System.getProperty("user.dir") + "/ffmpeg/"));
+        pb.redirectErrorStream(true);
+
+        // startinf the process
+        Process process = pb.start();
+        output.writeObject("TCP");
+
+        //int ret = process.waitFor();
+
+        //System.out.printf("Program exited with code: %d", ret);
+
+        // for reading the output from stream
+
+        BufferedReader stdInput
+                = new BufferedReader(new InputStreamReader(
+                process.getInputStream()));
+
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
     }
 
     private void addFilesToClient(float speed, NClient newClient){
