@@ -11,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author nicktheblackbeard
@@ -22,7 +23,7 @@ public class Server{
     private int port = 5000; //default port
 
 
-    public Server() throws IOException, ClassNotFoundException {
+    public Server() throws IOException, ClassNotFoundException, InterruptedException {
         //allFiles = FilesCreator.
         server = new ServerSocket(port);
         for(;;){
@@ -36,13 +37,17 @@ public class Server{
             this.addFilesToClient(speedResponse, newClient);
             output.writeObject(newClient);
             for(;;) {
-                String fileToPlay = (String) input.readObject();
+                String fileToPlay = (String) input.readObject(); //get file name
                 if (fileToPlay.equals("-1")) break;
-                String protocol = (String) input.readObject();
+                String protocol = (String) input.readObject(); //get protocol
                 System.out.println("Διάβασα το αρχείο: " + fileToPlay);
                 System.out.println("Και το πρωτόκολλο είναι: " + protocol);
                 if(protocol.equals("TCP")){
                     this.streamWithTCP(fileToPlay, output);
+                }
+                else if(protocol.equals("UDP")){
+                    this.streamWithUDP(fileToPlay, output);
+
                 }
 
             }
@@ -61,9 +66,9 @@ public class Server{
         commands.add("-i");
         commands.add(FilesLoader.videosPath + fileName);
         commands.add("-f");
-        commands.add(split[1]);
-        commands.add("tcp://127.0.0.1:4001?listen");
-        System.out.println(FilesLoader.videosPath + "Amnesia_eurov-720p.mp4");
+        commands.add("avi");
+        commands.add("tcp://127.0.0.1:4010?listen");
+        //System.out.println(FilesLoader.videosPath + "Amnesia_eurov-720p.mp4");
         // command in Mac OS
         // creating the process
         ProcessBuilder pb = new ProcessBuilder(commands);
@@ -73,13 +78,35 @@ public class Server{
         // startinf the process
         Process process = pb.start();
         output.writeObject("TCP");
+        BufferedReader stdInput
+                = new BufferedReader(new InputStreamReader(
+                process.getInputStream()));
 
-        //int ret = process.waitFor();
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+    }
 
-        //System.out.printf("Program exited with code: %d", ret);
+    private void streamWithUDP(String fileName, ObjectOutputStream output) throws IOException, InterruptedException {
+        String[] split = fileName.split("\\."); //split[1] contains the format
+        List<String> commands = new ArrayList<String>();
+        commands.add("ffmpeg"); // command
+        commands.add("-i");
+        commands.add(FilesLoader.videosPath + fileName);
+        commands.add("-f");
+        commands.add("mpegts");
+        commands.add("udp://127.0.0.1:5000?listen");
+        // command in Mac OS
+        // creating the process
+        ProcessBuilder pb = new ProcessBuilder(commands);
+        pb.directory(new File(System.getProperty("user.dir") + "/ffmpeg/"));
+        pb.redirectErrorStream(true);
 
-        // for reading the output from stream
-
+        output.writeObject("UDP");
+        TimeUnit.SECONDS.sleep(5);
+        // startinf the process
+        Process process = pb.start();
         BufferedReader stdInput
                 = new BufferedReader(new InputStreamReader(
                 process.getInputStream()));
