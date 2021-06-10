@@ -37,10 +37,10 @@ public class Server{
             output.writeObject(newClient);
             for(;;) {
                 String fileToPlay = (String) input.readObject();
+                if (fileToPlay.equals("-1")) break;
                 String protocol = (String) input.readObject();
                 System.out.println("Διάβασα το αρχείο: " + fileToPlay);
                 System.out.println("Και το πρωτόκολλο είναι: " + protocol);
-                if (protocol == "-1") break;
             }
 
             output.close();
