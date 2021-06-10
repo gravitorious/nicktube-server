@@ -6,12 +6,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesCreator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/clientdata/NFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/clientdata/NFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/server/FilesCreator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nicktheblackbeard/server/FilesLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="277">
+              <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -39,17 +35,20 @@
       <file leaf-file-name="FilesCreator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2393">
-              <caret line="35" column="36" lean-forward="true" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+            <state relative-caret-position="322">
+              <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
+              <folding>
+                <element signature="e#7864#7865#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+            <state relative-caret-position="278">
+              <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,11 +56,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NClient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="-37">
+              <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
+                <element signature="e#508#509#0" expanded="true" />
+                <element signature="e#574#575#0" expanded="true" />
+                <element signature="e#613#614#0" expanded="true" />
+                <element signature="e#654#655#0" expanded="true" />
+                <element signature="e#693#694#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,8 +77,8 @@
       <file leaf-file-name="FilesLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-663">
-              <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+            <state relative-caret-position="-832">
+              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -87,8 +95,8 @@
       <file leaf-file-name="NFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
+            <state relative-caret-position="129">
+              <caret line="106" column="8" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="120" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,15 +137,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server-files/FilesCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/serverfiles/FilesLoader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/serverfiles/FilesCreator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" />
       </list>
     </option>
   </component>
@@ -154,7 +162,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="25" />
     <option name="width" value="1440" />
     <option name="height" value="808" />
@@ -351,15 +359,15 @@
       <workItem from="1623141422056" duration="849000" />
       <workItem from="1623142444844" duration="12631000" />
       <workItem from="1623234448717" duration="696000" />
-      <workItem from="1623235661600" duration="6752000" />
+      <workItem from="1623235661600" duration="13207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51295000" />
+    <option name="totallyTimeSpent" value="57750000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1440" height="808" extended-state="0" />
+    <frame x="0" y="25" width="1440" height="809" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -371,12 +379,12 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.2" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32765958" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32719547" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -630,16 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesCreator.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server-files/FilesLoader.java">
@@ -656,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2393">
-          <caret line="35" column="36" lean-forward="true" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/ServerSocket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -670,17 +661,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-37">
+          <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+            <element signature="e#508#509#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#613#614#0" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663">
-          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        <state relative-caret-position="-832">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
+          <folding>
+            <element signature="e#7864#7865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="106" column="8" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="120" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="277">
+          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -689,18 +716,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+        <state relative-caret-position="278">
+          <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

@@ -213,5 +213,7 @@ public class FilesCreator {
         }
     }
 
-
+    public ArrayList<NFile> getAllFiles() {
+        return allFiles;
+    }
 }

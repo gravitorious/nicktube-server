@@ -1,5 +1,6 @@
 package com.nicktheblackbeard.clientdata;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,7 +10,8 @@ import java.util.Collections;
  */
 
 
-public class NFile{
+public class NFile implements Serializable{
+    private static final long serialVersionUID = -5399605122490343339L;
     private String name;
     private String format;
     private ArrayList<String> qualities;
@@ -126,5 +128,10 @@ public class NFile{
 
     public void findMaxQuality(){
         this.maxQuality = Collections.max(this.intQualities);
+    }
+
+    public void copyFile(NFile file){
+        this.name = file.getName();
+        this.format = file.getFormat();
     }
 }
