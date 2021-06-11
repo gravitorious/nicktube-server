@@ -47,7 +47,9 @@ public class Server{
                 }
                 else if(protocol.equals("UDP")){
                     this.streamWithUDP(fileToPlay, output);
-
+                }
+                else if(protocol.equals("RTP/UDP")){
+                    this.streamWithRTP(fileToPlay, output);
                 }
 
             }
@@ -60,7 +62,6 @@ public class Server{
     }
 
     private void streamWithTCP(String fileName, ObjectOutputStream output) throws IOException {
-        String[] split = fileName.split("\\."); //split[1] contains the format
         List<String> commands = new ArrayList<String>();
         commands.add("ffmpeg"); // command
         commands.add("-i");
@@ -89,8 +90,7 @@ public class Server{
     }
 
     private void streamWithUDP(String fileName, ObjectOutputStream output) throws IOException, InterruptedException {
-        String[] split = fileName.split("\\."); //split[1] contains the format
-        List<String> commands = new ArrayList<String>();
+        List<String> commands = new ArrayList<>();
         commands.add("ffmpeg"); // command
         commands.add("-i");
         commands.add(FilesLoader.videosPath + fileName);
@@ -116,6 +116,53 @@ public class Server{
             System.out.println(s);
         }
     }
+
+    private void streamWithRTP(String fileName, ObjectOutputStream output) throws IOException, InterruptedException {
+        List<String> commands = new ArrayList<>();
+        commands.add("ffmpeg");
+        commands.add("-re");
+        commands.add("-i");
+        commands.add(FilesLoader.videosPath + fileName);
+        commands.add("-vcodec");
+        commands.add("copy");
+        commands.add("-an");
+        commands.add("-f");
+        commands.add("rtp");
+        commands.add("-sdp_file");
+        commands.add("video.sdp");
+        commands.add("rtp://127.0.0.1:5006");
+        commands.add("-vn");
+        commands.add("-acodec");
+        commands.add("copy");
+        commands.add("-f");
+        commands.add("rtp");
+        commands.add("-sdp_file");
+        commands.add("video.sdp");
+        commands.add("rtp://127.0.0.1:5004");
+        // command in Mac OS
+        // creating the process
+        ProcessBuilder pb = new ProcessBuilder(commands);
+        pb.directory(new File(System.getProperty("user.dir") + "/ffmpeg/"));
+        pb.redirectErrorStream(true);
+
+        output.writeObject("RTP/UDP");
+        TimeUnit.SECONDS.sleep(5);
+        // startinf the process
+        Process process = pb.start();
+        BufferedReader stdInput
+                = new BufferedReader(new InputStreamReader(
+                process.getInputStream()));
+
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+    }
+
+
+
+
+
 
     private void addFilesToClient(float speed, NClient newClient){
         int maxQuality = this.returnMaxQualityForClient(speed);
