@@ -9,6 +9,9 @@ import com.nicktheblackbeard.server.serverfiles.FilesLoader;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -49,7 +52,7 @@ public class Server{
                     this.streamWithUDP(fileToPlay, output);
                 }
                 else if(protocol.equals("RTP/UDP")){
-                    this.streamWithRTP(fileToPlay, output);
+                    this.streamWithRTP(fileToPlay, output, input);
                 }
 
             }
@@ -117,8 +120,9 @@ public class Server{
         }
     }
 
-    private void streamWithRTP(String fileName, ObjectOutputStream output) throws IOException, InterruptedException {
+    private void streamWithRTP(String fileName, ObjectOutputStream output, ObjectInputStream input) throws IOException, InterruptedException, ClassNotFoundException {
         List<String> commands = new ArrayList<>();
+        System.out.println("θα παίξω το: " + FilesLoader.videosPath + fileName);
         commands.add("ffmpeg");
         commands.add("-re");
         commands.add("-i");
@@ -146,9 +150,23 @@ public class Server{
         pb.redirectErrorStream(true);
 
         output.writeObject("RTP/UDP");
-        TimeUnit.SECONDS.sleep(5);
         // startinf the process
         Process process = pb.start();
+        TimeUnit.SECONDS.sleep(1);// wait to create the file
+        String videoSdpFile = readFile(System.getProperty("user.dir") + "/ffmpeg/"+"video.sdp", Charset.defaultCharset());
+        System.out.println("Εμφανίζω το αρχείο");
+        System.out.println(videoSdpFile);
+
+        //send the file
+        output.writeObject(videoSdpFile);
+
+        //wait for the answer from client
+        String answer = (String) input.readObject();
+
+        //wait for the client to create the video.sdp
+
+        TimeUnit.SECONDS.sleep(5);
+        /*
         BufferedReader stdInput
                 = new BufferedReader(new InputStreamReader(
                 process.getInputStream()));
@@ -156,7 +174,8 @@ public class Server{
         String s = null;
         while ((s = stdInput.readLine()) != null) {
             System.out.println(s);
-        }
+        }*/
+
     }
 
 
@@ -202,6 +221,13 @@ public class Server{
         else return 1080;
     }
 
+
+    private static String readFile(String path, Charset encoding)
+            throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
+    }
 
 
 
