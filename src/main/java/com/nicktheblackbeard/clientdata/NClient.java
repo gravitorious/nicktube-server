@@ -7,6 +7,12 @@ import java.util.ArrayList;
  * @author nicktheblackbeard
  * 6/6/21
  */
+
+/*
+    Contains all files that client is able to play. Implements Serializable interface so we can transfer it via network
+ */
+
+
 public class NClient implements Serializable {
     private static final long serialVersionUID = -5399605122490343339L;
     ArrayList<NFile> mkvFiles;

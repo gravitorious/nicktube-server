@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
  * @author nicktheblackbeard
  * 6/6/21
  */
+
+
+/*
+    Load existing files (from videos folder) to memory
+ */
 public class FilesLoader {
     private ArrayList<NFile> allFiles;
     //private ArrayList<NClient> clients = null;
@@ -21,20 +26,22 @@ public class FilesLoader {
     /*
     default constructor creates missing files and put them to memory
      */
-    public FilesLoader(){
+    public FilesLoader() throws ServerException{
+        Main.log.debug("Videos folder path is : " + videosPath);
         this.allFiles = new ArrayList<>();
-        ArrayList<String> file_names = this.getFilesFromDirectory(); //πρέπει να γίνει έλεγχος για το αν βρήκε αρχεία
+        ArrayList<String> file_names = this.getFilesFromDirectory();
+        if(file_names.size() == 0) throw new ServerException(1, "Files not found...");
         Main.log.debug("Server found these files: " +file_names.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ")));
         this.addInitialFilesToMemory(file_names);
     }
 
-    private ArrayList<String> getFilesFromDirectory(){
-        ArrayList<String> file_names = new ArrayList<String>();
+    private ArrayList<String> getFilesFromDirectory() throws ServerException {
+        ArrayList<String> file_names = new ArrayList<>();
 
         File[] files = new File(videosPath).listFiles();
-//If this pathname does not denote a directory, then listFiles() returns null.
+        if(files == null) throw new ServerException(2, "Videos directory is not found");
 
         for (File file : files) {
             if (file.isFile()) {
@@ -50,14 +57,6 @@ public class FilesLoader {
         }
         return null;
     }
-
-
-    private void addFile(NFile file){
-        this.allFiles.add(file);
-    }
-
-
-
 
     /*
         we put every file from videos to memory.
@@ -82,12 +81,6 @@ public class FilesLoader {
             }else {
                 this.allFiles.add(new NFile(split_by_dash[0], split_by_dot[0], split_by_dot[1]));
             }
-        }
-    }
-
-    private void printAllFiles(){
-        for(NFile file : this.allFiles){
-            System.out.println(file.toString());
         }
     }
 

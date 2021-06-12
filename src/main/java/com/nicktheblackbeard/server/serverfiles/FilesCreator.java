@@ -1,5 +1,6 @@
 package com.nicktheblackbeard.server.serverfiles;
 
+import com.nicktheblackbeard.Main;
 import com.nicktheblackbeard.clientdata.NFile;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
@@ -15,11 +16,18 @@ import java.util.Iterator;
  * 7/6/21
  */
 
+/*
+    We use FilesCreator to create all missing files.
+    allFiles : this list contains ALL files that server will read and create
+    newFormatFiles : this list contains only the files that we needed to create new format. In the end we copy this list
+    to the allFiles list.
+
+ */
 
 
 public class FilesCreator {
     private ArrayList<NFile> allFiles;
-    private ArrayList<NFile> allFilesAfterModification;
+    private ArrayList<NFile> newFormatFiles;
 
     private FFmpeg ffmpeg = null;
     private FFprobe ffprobe = null;
@@ -38,19 +46,24 @@ public class FilesCreator {
 
 
 
-    public FilesCreator() throws IOException {
+    public FilesCreator() throws IOException, ServerException{
         this.loadFFmpegDir();
+        Main.log.info("Load files from directory...");
         com.nicktheblackbeard.server.serverfiles.FilesLoader filesLoader = new FilesLoader();
         this.allFiles = filesLoader.getAllFiles();
-        this.allFilesAfterModification = new ArrayList<>();
-        this.printAllFiles();
+        this.newFormatFiles = new ArrayList<>();
+        this.printAllFilesLog();
+        Main.log.info("Create files...");
         this.addNewFiles();
-
     }
 
-
+    /*
+        load ffmpeg directory that contains ffmpeg, ffplay and ffprobe.
+        Also create the executor
+     */
     public void loadFFmpegDir() throws IOException {
         this.ffmpegPath = System.getProperty("user.dir") + "/ffmpeg/";
+        Main.log.debug("ffmpeg directory is: " + this.ffmpegPath);
         this.ffmpeg = new FFmpeg(ffmpegPath + "ffmpeg");
         this.ffprobe = new FFprobe(ffmpegPath + "ffprobe");
         this.builder = new FFmpegBuilder();
@@ -59,16 +72,20 @@ public class FilesCreator {
 
 
     /*
-        for every file we are searching for the maximum quality. Then we
+        for every file we are searching for the maximum quality. Then we are creating the missing qualities.
+        After that, we are creating files with the missing formats base on the max quality.
+        testedFilesNames : contains all file names that we have already created new files
+        testingFiles : contains filenames that we checked for new qualities. This will have maximum three size
+        for each file, cause formats are three (mkv, mp4, avi)/
      */
     public void addNewFiles(){
         boolean result;
         Integer max;
-        ArrayList<String> testedFilesNames = new ArrayList<>(); //contains all file names that we have already create new files
-        ArrayList<NFile> testingFiles; //all files that we will create new files. it will contains max 3 objects each time
+        ArrayList<String> testedFilesNames = new ArrayList<>();
+        ArrayList<NFile> testingFiles;
         for(NFile checkingFile : allFiles){
             this.changeToFalse();
-            result = this.searchFileName(testedFilesNames, checkingFile.getName());
+            result = this.searchFileName(testedFilesNames, checkingFile.getName()); //check if we have already tested this file
             if(result) continue;
             testedFilesNames.add(checkingFile.getName());
             testingFiles = new ArrayList<>();
@@ -94,17 +111,17 @@ public class FilesCreator {
                 }
                 if(!this.has_mp4){
                     NFile new_file = new NFile(checkingFile.getName(), "mp4");
-                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    this.newFormatFiles.add(new_file); //put new file to memory
                     createNewFiles(new_file, max);
                 }
                 if(!this.has_mkv){
                     NFile new_file = new NFile(checkingFile.getName(), "mkv");
-                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    this.newFormatFiles.add(new_file); //put new file to memory
                     createNewFiles(new_file, max);
                 }
                 if(!this.has_avi){
                     NFile new_file = new NFile(checkingFile.getName(), "avi");
-                    this.allFilesAfterModification.add(new_file); //put new file to memory
+                    this.newFormatFiles.add(new_file); //put new file to memory
                     createNewFiles(new_file, max);
                 }
             }
@@ -114,11 +131,11 @@ public class FilesCreator {
     }
 
     /*
-    We are trying to find the max quality from a file name (not checking the format)
-    We are checking all files that have the same name with checkingFile
-    We will return the max quality and we will keep the file with the max quality. We will need this file
-    to make the transcoding
- */
+        We are trying to find the max quality from a file name (not checking the format)
+        We are checking all files that have the same name with checkingFile
+        We will return the max quality and we will keep the file with the max quality. We will need this file
+        to make the transcoding
+    */
     private Integer findMaxQualityFromFileName(NFile checkingFile, Integer max, ArrayList<NFile> testingFiles){
         boolean result;
         for(NFile otherFile : allFiles){
@@ -133,8 +150,11 @@ public class FilesCreator {
         return max;
     }
 
+    /*
+        create new files with new quality
+     */
     private void createNewFiles(NFile file, Integer max){
-        String new_name;
+        String new_name = null;
         String old_name = this.fileWithMaxQuality.getName()+"-"+max+"p."+this.fileWithMaxQuality.getFormat();
         ArrayList<Integer> file_qualities = file.getIntQualities();
         if(!file_qualities.contains(240) && 240 <= max){
@@ -160,17 +180,15 @@ public class FilesCreator {
             new_name = file.getName()+"-720p."+file.getFormat();
             this.createNewQuality(old_name, new_name, 1280, 720);
         }
-
-        /*
-        if(!file_qualities.contains(1080) && 1080 <= max){
-            file.addQuality("1080p");
-            new_name = file.getName()+"-1080p."+file.getFormat();
-            this.createNewQuality(old_name, new_name, 1920, 1080);
-        }*/
+        if(new_name.length() != 0 && new_name != null){
+            Main.log.debug("Created file : " + new_name);
+        }
 
     }
 
-
+    /*
+        create the new file with new quality
+     */
     private void createNewQuality(String oldName, String newName, int width, int height){
         this.builder = new FFmpegBuilder()
                 .setInput(FilesLoader.videosPath + oldName)
@@ -187,15 +205,9 @@ public class FilesCreator {
         else return false;
     }
 
-    private void printAllFiles(){
+    private void printAllFilesLog(){
         for(NFile file : this.allFiles){
-            System.out.println(file.toString());
-        }
-    }
-
-    private void printAllFiles(ArrayList<NFile> files){
-        for(NFile file : files){
-            System.out.println(file.toString());
+            Main.log.info("Read file: " + file.toString());
         }
     }
 
@@ -206,7 +218,7 @@ public class FilesCreator {
     }
 
     private void putNewFilesToAllFiles(){
-        Iterator<NFile> it = this.allFilesAfterModification.iterator();
+        Iterator<NFile> it = this.newFormatFiles.iterator();
 
         while (it.hasNext()) {
             this.allFiles.add(it.next());

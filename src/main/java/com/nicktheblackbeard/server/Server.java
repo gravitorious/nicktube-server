@@ -3,7 +3,6 @@ package com.nicktheblackbeard.server;
 import com.nicktheblackbeard.Main;
 import com.nicktheblackbeard.clientdata.NClient;
 import com.nicktheblackbeard.clientdata.NFile;
-import com.nicktheblackbeard.server.serverfiles.FilesCreator;
 import com.nicktheblackbeard.server.serverfiles.FilesLoader;
 
 import java.io.*;
@@ -27,34 +26,35 @@ public class Server{
 
 
     public Server() throws IOException, ClassNotFoundException, InterruptedException {
-        //allFiles = FilesCreator.
         server = new ServerSocket(port);
         for(;;){
             System.out.println("Listening for client requests");
-            Socket socket = server.accept();
+            Socket socket = server.accept(); //waiting for client
             ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-            float speedResponse = (float) input.readObject();
-            System.out.println("I got downloadspeed: " + speedResponse);
-            NClient newClient = new NClient();
+            float speedResponse = (float) input.readObject(); //read download speed from client
+            Main.log.debug("Client download speed: " + speedResponse);
+            NClient newClient = new NClient(); //create client so we can save the data
             this.addFilesToClient(speedResponse, newClient);
             output.writeObject(newClient);
             for(;;) {
                 String fileToPlay = (String) input.readObject(); //get file name
                 if (fileToPlay.equals("-1")) break;
                 String protocol = (String) input.readObject(); //get protocol
-                System.out.println("Διάβασα το αρχείο: " + fileToPlay);
-                System.out.println("Και το πρωτόκολλο είναι: " + protocol);
+                Main.log.debug("Chosen file from client: " + fileToPlay);
+                Main.log.debug("Chosen file from client: " + protocol);
                 if(protocol.equals("TCP")){
+                    Main.log.trace("Start streaming via TCP");
                     this.streamWithTCP(fileToPlay, output);
                 }
                 else if(protocol.equals("UDP")){
+                    Main.log.trace("Start streaming via UDP");
                     this.streamWithUDP(fileToPlay, output);
                 }
                 else if(protocol.equals("RTP/UDP")){
+                    Main.log.trace("Start streaming via RTP/UDP");
                     this.streamWithRTP(fileToPlay, output, input);
                 }
-
             }
 
             output.close();

@@ -10,12 +10,17 @@ import java.util.Collections;
  */
 
 
+
+/*
+    Store the data for each file. Implements Serializable interface so we can transfer it via network
+ */
+
 public class NFile implements Serializable{
     private static final long serialVersionUID = -5399605122490343339L;
     private String name;
     private String format;
     private ArrayList<String> qualities;
-    private ArrayList<Integer> intQualities;
+    private ArrayList<Integer> intQualities; //same qualities but with integer type
 
     private Integer maxQuality;
 
@@ -77,16 +82,6 @@ public class NFile implements Serializable{
     public void setQualities(ArrayList<String> qualities) {
         this.qualities = qualities;
     }
-
-    /*
-    @Override
-    public String toString() {
-        return "NFile{" +
-                "name='" + name + '\'' +
-                ", format='" + format + '\'' +
-                ", qualities=" + qualities +
-                '}';
-    }*/
 
     @Override
     public String toString() {
