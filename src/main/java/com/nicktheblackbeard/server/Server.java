@@ -80,15 +80,6 @@ public class Server{
         // startinf the process
         Process process = pb.start();
         output.writeObject("TCP");
-        /*
-        BufferedReader stdInput
-                = new BufferedReader(new InputStreamReader(
-                process.getInputStream()));
-
-        String s = null;
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }*/
     }
 
     private void streamWithUDP(String fileName, ObjectOutputStream output, ObjectInputStream input) throws IOException, InterruptedException, ClassNotFoundException {
@@ -111,7 +102,7 @@ public class Server{
         Process process = pb.start();
 
         String closed = (String) input.readObject(); //wait for client to close video
-        process.destroy();
+        process.destroy(); //stop streaming!
     }
 
     private void streamWithRTP(String fileName, ObjectOutputStream output, ObjectInputStream input) throws IOException, InterruptedException, ClassNotFoundException {
@@ -154,18 +145,8 @@ public class Server{
         System.out.println("ΕΛΑΒΑ ΑΠΑΝΤΗΣΗ: " + answer);
         TimeUnit.SECONDS.sleep(5);
 
-        /*
-        BufferedReader stdInput
-                = new BufferedReader(new InputStreamReader(
-                process.getInputStream()));
-
-        String s = null;
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }*/
-
         String closed = (String) input.readObject(); //wait for client to close video
-        process.destroy();
+        process.destroy(); //stop streaming!
 
     }
 
@@ -220,8 +201,4 @@ public class Server{
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
-
-
-
-
 }

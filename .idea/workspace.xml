@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="08169f19-85e0-403a-983e-3ffe3fb601e6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="112" column="45" lean-forward="true" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+            <state relative-caret-position="563">
+              <caret line="41" column="51" lean-forward="true" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -28,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="241">
+              <caret line="21" column="31" selection-start-line="21" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,7 +42,7 @@
       <file leaf-file-name="NClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
+            <state relative-caret-position="150">
               <caret line="11" column="119" selection-start-line="11" selection-start-column="119" selection-end-line="11" selection-end-column="119" />
             </state>
           </provider>
@@ -52,7 +51,7 @@
       <file leaf-file-name="FilesCreator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-366">
+            <state relative-caret-position="2745">
               <caret line="183" column="9" lean-forward="true" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -75,8 +74,8 @@
       <file leaf-file-name="NFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-334">
-              <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+            <state relative-caret-position="-722">
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -84,7 +83,7 @@
       <file leaf-file-name="FilesLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-335">
+            <state relative-caret-position="555">
               <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
             </state>
           </provider>
@@ -93,7 +92,7 @@
       <file leaf-file-name="ServerException.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/ServerException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-141">
+            <state relative-caret-position="165">
               <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
             </state>
           </provider>
@@ -375,12 +374,12 @@
       <workItem from="1623363196594" duration="5392000" />
       <workItem from="1623407132223" duration="13243000" />
       <workItem from="1623448782577" duration="927000" />
-      <workItem from="1623485205547" duration="11569000" />
+      <workItem from="1623485205547" duration="12870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101959000" />
+    <option name="totallyTimeSpent" value="103260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="810" extended-state="6" />
@@ -396,11 +395,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32673267" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32673267" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -428,7 +427,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/FilesLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -642,60 +640,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-335">
-          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="11" column="119" selection-start-line="11" selection-start-column="119" selection-end-line="11" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-334">
-          <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/net/ServerSocket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="579" column="16" selection-start-line="579" selection-start-column="16" selection-end-line="579" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="183" column="9" lean-forward="true" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7833#7834#0" expanded="true" />
-            <element signature="e#7864#7865#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/ServerException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-141">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -706,10 +654,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/src.zip!/java/nio/file/Paths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="82" column="23" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="23" />
+          <folding>
+            <element signature="e#2673#2674#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/ServerException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/serverfiles/FilesCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="183" column="9" lean-forward="true" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7833#7834#0" expanded="true" />
+            <element signature="e#7864#7865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="119" selection-start-line="11" selection-start-column="119" selection-end-line="11" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/clientdata/NFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-722">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="112" column="45" lean-forward="true" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+        <state relative-caret-position="563">
+          <caret line="41" column="51" lean-forward="true" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/nicktheblackbeard/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="21" column="31" selection-start-line="21" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
