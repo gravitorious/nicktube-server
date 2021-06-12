@@ -18,10 +18,9 @@ import java.util.Iterator;
 
 /*
     We use FilesCreator to create all missing files.
-    allFiles : this list contains ALL files that server will read and create
+    allFiles : this list contains ALL files that server will read and create. we will use this list for everything
     newFormatFiles : this list contains only the files that we needed to create new format. In the end we copy this list
     to the allFiles list.
-
  */
 
 
@@ -180,7 +179,7 @@ public class FilesCreator {
             new_name = file.getName()+"-720p."+file.getFormat();
             this.createNewQuality(old_name, new_name, 1280, 720);
         }
-        if(new_name.length() != 0 && new_name != null){
+        if(new_name != null && new_name.length() != 0){
             Main.log.debug("Created file : " + new_name);
         }
 

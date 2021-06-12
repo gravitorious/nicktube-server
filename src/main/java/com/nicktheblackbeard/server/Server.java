@@ -26,9 +26,9 @@ public class Server{
 
 
     public Server() throws IOException, ClassNotFoundException, InterruptedException {
-        server = new ServerSocket(port);
         for(;;){
-            System.out.println("Listening for client requests");
+            server = new ServerSocket(port);
+            Main.log.info("Listening for client requests");
             Socket socket = server.accept(); //waiting for client
             ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
@@ -38,43 +38,41 @@ public class Server{
             this.addFilesToClient(speedResponse, newClient);
             output.writeObject(newClient);
             for(;;) {
-                String fileToPlay = (String) input.readObject(); //get file name
+                String fileToPlay = (String) input.readObject(); //get file name from client
                 if (fileToPlay.equals("-1")) break;
-                String protocol = (String) input.readObject(); //get protocol
+                String protocol = (String) input.readObject(); //get protocol from client
                 Main.log.debug("Chosen file from client: " + fileToPlay);
-                Main.log.debug("Chosen file from client: " + protocol);
+                Main.log.debug("Chosen protocol from client: " + protocol);
                 if(protocol.equals("TCP")){
                     Main.log.trace("Start streaming via TCP");
-                    this.streamWithTCP(fileToPlay, output);
+                    this.streamWithTCP(fileToPlay, output); //stream with TCP
                 }
                 else if(protocol.equals("UDP")){
                     Main.log.trace("Start streaming via UDP");
-                    this.streamWithUDP(fileToPlay, output);
+                    this.streamWithUDP(fileToPlay, output, input); //stream with UDP
                 }
                 else if(protocol.equals("RTP/UDP")){
                     Main.log.trace("Start streaming via RTP/UDP");
-                    this.streamWithRTP(fileToPlay, output, input);
+                    this.streamWithRTP(fileToPlay, output, input); //stream RTP/UDP
                 }
             }
-
             output.close();
+            input.close();
             socket.close();
-            if(speedResponse == 0) break;
+            server.close();
+            //if(speedResponse == 0) break;
         }
-        server.close();
     }
 
     private void streamWithTCP(String fileName, ObjectOutputStream output) throws IOException {
-        List<String> commands = new ArrayList<String>();
+        List<String> commands = new ArrayList<>();
         commands.add("ffmpeg"); // command
         commands.add("-i");
         commands.add(FilesLoader.videosPath + fileName);
         commands.add("-f");
         commands.add("avi");
         commands.add("tcp://127.0.0.1:4010?listen");
-        //System.out.println(FilesLoader.videosPath + "Amnesia_eurov-720p.mp4");
-        // command in Mac OS
-        // creating the process
+        Main.log.debug("The file path is : " + FilesLoader.videosPath + fileName);
         ProcessBuilder pb = new ProcessBuilder(commands);
         pb.directory(new File(System.getProperty("user.dir") + "/ffmpeg/"));
         pb.redirectErrorStream(true);
@@ -82,6 +80,7 @@ public class Server{
         // startinf the process
         Process process = pb.start();
         output.writeObject("TCP");
+        /*
         BufferedReader stdInput
                 = new BufferedReader(new InputStreamReader(
                 process.getInputStream()));
@@ -89,10 +88,10 @@ public class Server{
         String s = null;
         while ((s = stdInput.readLine()) != null) {
             System.out.println(s);
-        }
+        }*/
     }
 
-    private void streamWithUDP(String fileName, ObjectOutputStream output) throws IOException, InterruptedException {
+    private void streamWithUDP(String fileName, ObjectOutputStream output, ObjectInputStream input) throws IOException, InterruptedException, ClassNotFoundException {
         List<String> commands = new ArrayList<>();
         commands.add("ffmpeg"); // command
         commands.add("-i");
@@ -110,14 +109,9 @@ public class Server{
         TimeUnit.SECONDS.sleep(5);
         // startinf the process
         Process process = pb.start();
-        BufferedReader stdInput
-                = new BufferedReader(new InputStreamReader(
-                process.getInputStream()));
 
-        String s = null;
-        while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }
+        String closed = (String) input.readObject(); //wait for client to close video
+        process.destroy();
     }
 
     private void streamWithRTP(String fileName, ObjectOutputStream output, ObjectInputStream input) throws IOException, InterruptedException, ClassNotFoundException {
@@ -152,20 +146,14 @@ public class Server{
         output.writeObject("RTP/UDP");
         // startinf the process
         Process process = pb.start();
-        TimeUnit.SECONDS.sleep(1);// wait to create the file
+        TimeUnit.SECONDS.sleep(3);
         String videoSdpFile = readFile(System.getProperty("user.dir") + "/ffmpeg/"+"video.sdp", Charset.defaultCharset());
-        System.out.println("Εμφανίζω το αρχείο");
-        System.out.println(videoSdpFile);
-
-        //send the file
-        output.writeObject(videoSdpFile);
-
-        //wait for the answer from client
-        String answer = (String) input.readObject();
-
-        //wait for the client to create the video.sdp
-
+        Main.log.debug("video.sdp contains: " + videoSdpFile);
+        output.writeObject(videoSdpFile); //send the file
+        String answer = (String) input.readObject(); //wait for the answer from client
+        System.out.println("ΕΛΑΒΑ ΑΠΑΝΤΗΣΗ: " + answer);
         TimeUnit.SECONDS.sleep(5);
+
         /*
         BufferedReader stdInput
                 = new BufferedReader(new InputStreamReader(
@@ -176,12 +164,16 @@ public class Server{
             System.out.println(s);
         }*/
 
+        String closed = (String) input.readObject(); //wait for client to close video
+        process.destroy();
+
     }
 
 
-
-
-
+    /*
+        maxQuality has the max quality that client is able to get base on his download speed
+        we will send all files that has quality less or equal than maxQuality.
+     */
 
     private void addFilesToClient(float speed, NClient newClient){
         int maxQuality = this.returnMaxQualityForClient(speed);
