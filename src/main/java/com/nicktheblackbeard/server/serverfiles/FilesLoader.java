@@ -64,7 +64,7 @@ public class FilesLoader {
         split_by_dot[0] : quality
         split_by_dot[1] : format
      */
-    private void addInitialFilesToMemory(ArrayList<String> file_names){
+    private void addInitialFilesToMemory(ArrayList<String> file_names) throws ServerException {
 
         NFile return_file;
         String[] split_by_dash;
@@ -72,7 +72,11 @@ public class FilesLoader {
         for(String file : file_names){
             /*
                 we assume that the name of the file has only one dash. Before the dash, is the name of the file
+                file name MUST CONTAIN ONLY ONE "." AND ONLY ONE "-".
              */
+            int count1 = file.length() - file.replace("-", "").length(); //counts "-"
+            int count2 = file.length() - file.replace(".", "").length(); //counts "-"
+            if(count1 != 1 || count2 != 1) throw new ServerException(3, "Problem with file name: " + file);
             split_by_dash = file.split("-", 2);
             split_by_dot = split_by_dash[1].split("\\.", 2);
             return_file = this.searchFileByNameAndFormat(split_by_dash[0], split_by_dot[1]);
