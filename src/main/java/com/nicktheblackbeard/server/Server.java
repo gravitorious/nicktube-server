@@ -142,7 +142,6 @@ public class Server{
         Main.log.debug("video.sdp contains: " + videoSdpFile);
         output.writeObject(videoSdpFile); //send the file
         String answer = (String) input.readObject(); //wait for the answer from client
-        System.out.println("ΕΛΑΒΑ ΑΠΑΝΤΗΣΗ: " + answer);
         TimeUnit.SECONDS.sleep(5);
 
         String closed = (String) input.readObject(); //wait for client to close video

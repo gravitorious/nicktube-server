@@ -179,6 +179,12 @@ public class FilesCreator {
             new_name = file.getName()+"-720p."+file.getFormat();
             this.createNewQuality(old_name, new_name, 1280, 720);
         }
+
+        if(!file_qualities.contains(1080) && 1080 <= max){
+            file.addQuality("1080p");
+            new_name = file.getName()+"-1080p."+file.getFormat();
+            this.createNewQuality(old_name, new_name, 1920, 1080);
+        }
         if(new_name != null && new_name.length() != 0){
             Main.log.debug("Created file : " + new_name);
         }
