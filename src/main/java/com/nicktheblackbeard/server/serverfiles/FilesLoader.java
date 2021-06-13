@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 public class FilesLoader {
     private ArrayList<NFile> allFiles;
-    
+
     public static String videosPath = System.getProperty("user.dir") + "/videos/";
 
     /*

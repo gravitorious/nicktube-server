@@ -22,10 +22,11 @@ import java.util.concurrent.TimeUnit;
 public class Server{
 
     private ServerSocket server;
-    private int port = 5000; //default port
+    private int port; //default port
 
 
     public Server() throws IOException, ClassNotFoundException, InterruptedException {
+        this.port = 5000;
         for(;;){
             server = new ServerSocket(port);
             Main.log.info("Listening for client requests");
@@ -60,18 +61,36 @@ public class Server{
             input.close();
             socket.close();
             server.close();
-            //if(speedResponse == 0) break;
         }
     }
 
-    private void streamWithTCP(String fileName, ObjectOutputStream output) throws IOException {
+    private void streamWithTCP(String fileName, ObjectOutputStream output) throws IOException{
+        String[] split_by_dash = fileName.split("-", 2);
+        String[] split_by_dot = split_by_dash[1].split("\\.", 2);
+        String format = null;
+        if(split_by_dot[1].equals("mkv")) format = "matroska";
+        else if(split_by_dot[1].equals("avi")) format = "avi";
+        else if(split_by_dot[1].equals("mp4")) format = "mp4";
+
         List<String> commands = new ArrayList<>();
-        commands.add("ffmpeg"); // command
-        commands.add("-i");
-        commands.add(FilesLoader.videosPath + fileName);
-        commands.add("-f");
-        commands.add("avi");
-        commands.add("tcp://127.0.0.1:4010?listen");
+        if(format.equals("matroska") || format.equals("avi")) {
+            commands.add("ffmpeg"); // command
+            commands.add("-i");
+            commands.add(FilesLoader.videosPath + fileName);
+            commands.add("-f");
+            commands.add(format);
+            commands.add("tcp://127.0.0.1:4010?listen");
+        }
+        else if(format.equals("mp4")){
+            commands.add("ffmpeg"); // command
+            commands.add("-i");
+            commands.add(FilesLoader.videosPath + fileName);
+            commands.add("-movflags");
+            commands.add("frag_keyframe+empty_moov");
+            commands.add("-f");
+            commands.add("mp4");
+            commands.add("tcp://127.0.0.1:4010?listen");
+        }
         Main.log.debug("The file path is : " + FilesLoader.videosPath + fileName);
         ProcessBuilder pb = new ProcessBuilder(commands);
         pb.directory(new File(System.getProperty("user.dir") + "/ffmpeg/"));
@@ -146,7 +165,6 @@ public class Server{
 
         String closed = (String) input.readObject(); //wait for client to close video
         process.destroy(); //stop streaming!
-
     }
 
 
