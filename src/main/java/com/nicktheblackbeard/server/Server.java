@@ -204,10 +204,10 @@ public class Server{
     }
 
     private int returnMaxQualityForClient(float speed){
-        if(speed < 1000) return 240;
-        else if (speed < 2000) return 360;
-        else if (speed < 4000) return 480;
-        else if (speed < 6000) return 720;
+        if(speed < 750) return 240;
+        else if (speed < 1000) return 360;
+        else if (speed < 2500) return 480;
+        else if (speed < 4500) return 720;
         else return 1080;
     }
 
